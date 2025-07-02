@@ -50,3 +50,15 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+
+## PHPStorm
+/.idea
+/*.iml
+
+## VS Code
+/.vscode
+
+## Eclipse
+/.project
+/.settings
