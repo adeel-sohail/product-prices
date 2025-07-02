@@ -1,7 +1,8 @@
 {
     "require": {
         "symfony/skeleton": "^7.3",
-        "symfony/flex": "^2.7"
+        "symfony/flex": "^2.7",
+        "symfony/monolog-bundle": "^3.10"
     },
     "config": {
         "allow-plugins": {
