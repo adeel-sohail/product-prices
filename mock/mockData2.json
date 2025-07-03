@@ -1,0 +1,13 @@
+{
+    "id": "123",
+    "competitor_data": [
+        {
+            "name": "VendorOne",
+            "amount": 20.49
+        },
+        {
+            "name": "VendorTwo",
+            "amount": 18.99
+        }
+    ]
+}

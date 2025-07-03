@@ -1,0 +1,13 @@
+{
+    "product_id": "123",
+    "prices": [
+        {
+            "vendor": "ShopA",
+            "price": 19.99
+        },
+        {
+            "vendor": "ShopB",
+            "price": 17.49
+        }
+    ]
+}
