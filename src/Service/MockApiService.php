@@ -2,14 +2,22 @@
 
 namespace App\Service;
 
+use App\Repository\ProductRepository;
+
 class MockApiService
 {
 
+<<<<<<< Updated upstream
     private string $mockDataDir;
 
     public function __construct(string $mockDataDir)
     {
         $this->mockDataDir = $mockDataDir;
+=======
+    public function __construct(private readonly string $mockDataDir, private readonly ProductRepository $productRepository)
+    {
+
+>>>>>>> Stashed changes
     }
 
     public function getRawProductPrices(): array
@@ -70,5 +78,10 @@ class MockApiService
 
         }
         return $cheapestProducts;
+    }
+
+    public function saveProductPrices() {
+        $products = $this->getCheapestProductPrices();
+        $this->productRepository->saveProductPrices($products);
     }
 }
