@@ -1,9 +1,10 @@
 {
-    "product": "13",
+    "product": "14",
     "price_data": [
         {
             "Company1": 18.99,
             "Company2": 35.00,
-            "Company3": 45}
+            "Company3": 45
+        }
     ]
 }

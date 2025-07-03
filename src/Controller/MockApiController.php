@@ -41,4 +41,10 @@ class MockApiController extends AbstractController
             $this->mockApiService->getCheapestProductPrices()
         );
     }
+
+    #[Route('/product-prices/save', name: 'save_product_prices', methods: ['GET'])]
+    public function saveProductPrices(): void
+    {
+        $this->mockApiService->saveProductPrices();
+    }
 }
