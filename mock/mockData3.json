@@ -1,9 +1,9 @@
 {
-    "id": "123",
+    "product": "13",
     "price_data": [
         {
-            "Company1": 35.00,
-            "Company2": 18.99
-        }
+            "Company1": 18.99,
+            "Company2": 35.00,
+            "Company3": 45}
     ]
 }

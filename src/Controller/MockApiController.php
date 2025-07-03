@@ -2,35 +2,43 @@
 
 namespace App\Controller;
 
+use App\Service\MockApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Service\MockDataService;
 
 
 #[Route(path: '/api')]
 class MockApiController extends AbstractController
 {
-    private MockDataService $mockDataService;
+    private MockApiService $mockApiService;
 
-    public function __construct(MockDataService $mockDataService)
+    public function __construct(MockApiService $mockApiService)
     {
-        $this->mockDataService = $mockDataService;
+        $this->mockApiService = $mockApiService;
     }
 
-    #[Route('/all-product-prices', name: 'all-product-prices', methods: ['GET'])]
-    public function getAllProductPrices(): JsonResponse
+    #[Route('/product-prices/raw', name: 'app_product_prices_raw', methods: ['GET'])]
+    public function getRawProductPrices(): JsonResponse
     {
-        return new JsonResponse([
-            $this->mockDataService->getAllProductPrices()
-        ]);
+        return new JsonResponse(
+            $this->mockApiService->getRawProductPrices()
+        );
     }
 
-    #[Route('/sorted-product-prices', name: 'sorted-product-prices', methods: ['GET'])]
-    public function getSortedProductPrices(): JsonResponse
+    #[Route('/product-prices/agg', name: 'app_product_prices_agg', methods: ['GET'])]
+    public function getAggregatedProductPrices(): JsonResponse
     {
-        return new JsonResponse([
-            $this->mockDataService->getSortedProductPrices()
-        ]);
+        return new JsonResponse(
+            $this->mockApiService->getAggregatedProductPrices()
+        );
+    }
+
+    #[Route('/product-prices/cheapest', name: 'app_product_prices_cheapest', methods: ['GET'])]
+    public function getCheapestProductPrices(): JsonResponse
+    {
+        return new JsonResponse(
+            $this->mockApiService->getCheapestProductPrices()
+        );
     }
 }
