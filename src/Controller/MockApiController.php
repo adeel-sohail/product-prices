@@ -11,11 +11,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(path: '/api')]
 class MockApiController extends AbstractController
 {
-    private MockApiService $mockApiService;
 
-    public function __construct(MockApiService $mockApiService)
+    public function __construct(private readonly MockApiService $mockApiService)
     {
-        $this->mockApiService = $mockApiService;
     }
 
     #[Route('/product-prices/raw', name: 'app_product_prices_raw', methods: ['GET'])]

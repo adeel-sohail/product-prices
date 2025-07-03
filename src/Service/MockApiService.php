@@ -5,11 +5,9 @@ namespace App\Service;
 class MockApiService
 {
 
-    private string $mockDataDir;
 
-    public function __construct(string $mockDataDir)
+    public function __construct(private readonly string $mockDataDir)
     {
-        $this->mockDataDir = $mockDataDir;
     }
 
     public function getRawProductPrices(): array
