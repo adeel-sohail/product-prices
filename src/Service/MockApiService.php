@@ -12,8 +12,7 @@ class MockApiService
 
     }
 
-    public
-    function getRawProductPrices(): array
+    public function getRawProductPrices(): array
     {
         return [
             'dataSource1' => json_decode(file_get_contents($this->mockDataDir . '/mockData1.json'), true),
@@ -22,8 +21,7 @@ class MockApiService
         ];
     }
 
-    public
-    function getAggregatedProductPrices(): array
+    public function getAggregatedProductPrices(): array
     {
         $dataSources = $this->getRawProductPrices();
 
@@ -56,8 +54,7 @@ class MockApiService
         return $prices;
     }
 
-    public
-    function getCheapestProductPrices(): array
+    public function getCheapestProductPrices(): array
     {
         $allProductPrices = $this->getAggregatedProductPrices();
         $cheapestProducts = [];
@@ -75,8 +72,7 @@ class MockApiService
         return $cheapestProducts;
     }
 
-    public
-    function saveProductPrices()
+    public function saveProductPrices()
     {
         $products = $this->getCheapestProductPrices();
         $this->productRepository->saveProductPrices($products);
