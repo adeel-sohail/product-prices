@@ -16,31 +16,25 @@ class MockApiController extends AbstractController
     {
     }
 
-    #[Route('/product-prices/raw', name: 'app_product_prices_raw', methods: ['GET'])]
+    #[Route('/product-prices/raw', name: 'app_get_raw_product_price', methods: ['GET'])]
     public function getRawProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getRawProductPrices()
-        );
+        return $this->json($this->mockApiService->getRawProductPrices());
     }
 
-    #[Route('/product-prices/agg', name: 'app_product_prices_agg', methods: ['GET'])]
+    #[Route('/product-prices/agg', name: 'app_get__agg_product_prices', methods: ['GET'])]
     public function getAggregatedProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getAggregatedProductPrices()
-        );
+        return $this->json($this->mockApiService->getAggregatedProductPrices());
     }
 
-    #[Route('/product-prices/cheapest', name: 'app_product_prices_cheapest', methods: ['GET'])]
+    #[Route('/product-prices/cheapest', name: 'app_get_cheapest_product_prices', methods: ['GET'])]
     public function getCheapestProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getCheapestProductPrices()
-        );
+        return $this->json($this->mockApiService->getCheapestProductPrices());
     }
 
-    #[Route('/product-prices/save', name: 'save_product_prices', methods: ['GET'])]
+    #[Route('/product-prices/save', name: 'app_save_product_prices', methods: ['GET'])]
     public function saveProductPrices(): void
     {
         $this->mockApiService->saveProductPrices();
