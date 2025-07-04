@@ -9,6 +9,7 @@ A symfony based PHP App to :
 - Aggregate and find the cheapest prices per product
 - Save product prices to the database
 - Retrieve product prices via API
+- Run a basic unit test 
 - API key authentication
 ---
 
@@ -141,6 +142,12 @@ make save-products
 
 Todo: For some reason cronjobs are not working in macOS. Automating this command will make save products after a period of time.
 
+### Tests
+There is also a Make file command to run the test. All the tests are in tests directory.
+
+```shell
+make tests 
+ ```
 ---
 ## Code Structure
 
