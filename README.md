@@ -128,8 +128,20 @@ There are two essential API requests working. You can test these either with cur
 - ##### /api/product-prices/save
 
     Will write the data to database, getting it from mock json files.
---- 
+---
 
+## Automation
+Currently, we have make command to save the product prices automatically. 
+
+you can navigate to the folder of project and run in terminal 
+
+```shell
+make save-products 
+ ```
+
+Todo: For some reason cronjobs are not working in macOS. Automating this command will make save products after a period of time.
+
+---
 ## Code Structure
 
 This project uses a layered architecture in symfony. Below is a summary of the main directories and files:
