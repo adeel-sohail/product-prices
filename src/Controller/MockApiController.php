@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[Route('/api')]
+#[Route('/api/product-prices')]
 class MockApiController extends AbstractController
 {
 
@@ -16,25 +16,25 @@ class MockApiController extends AbstractController
     {
     }
 
-    #[Route('/product-prices/raw', name: 'app_get_raw_product_price', methods: ['GET'])]
+    #[Route('/raw', name: 'app_get_raw_product_price', methods: ['GET'])]
     public function getRawProductPrices(): JsonResponse
     {
         return $this->json($this->mockApiService->getRawProductPrices());
     }
 
-    #[Route('/product-prices/agg', name: 'app_get__agg_product_prices', methods: ['GET'])]
+    #[Route('/agg', name: 'app_get__agg_product_prices', methods: ['GET'])]
     public function getAggregatedProductPrices(): JsonResponse
     {
         return $this->json($this->mockApiService->getAggregatedProductPrices());
     }
 
-    #[Route('/product-prices/cheapest', name: 'app_get_cheapest_product_prices', methods: ['GET'])]
+    #[Route('/cheapest', name: 'app_get_cheapest_product_prices', methods: ['GET'])]
     public function getCheapestProductPrices(): JsonResponse
     {
         return $this->json($this->mockApiService->getCheapestProductPrices());
     }
 
-    #[Route('/product-prices/save', name: 'app_save_product_prices', methods: ['GET'])]
+    #[Route('/save', name: 'app_save_product_prices', methods: ['GET'])]
     public function saveProductPrices(): void
     {
         $this->mockApiService->saveProductPrices();
