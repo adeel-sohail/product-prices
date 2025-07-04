@@ -20,7 +20,7 @@ class ProductController extends AbstractController
         return $this->json($this->productService->getAllProductsPrices());
     }
 
-    #[Route('/prices/{id}', name: 'app_get_products_prices_by_id', methods: ['GET'])]
+    #[Route('/prices/{id}', name: 'app_get_products_price_by_id', methods: ['GET'])]
     public function getProductsPriceById(int $id): JsonResponse
     {
         return $this->json($this->productService->getProductsPriceById($id));

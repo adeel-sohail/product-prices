@@ -3,46 +3,56 @@
 namespace App\Controller;
 
 use App\Service\MockApiService;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[Route('/api')]
+#[Route('/api/product-prices')]
 class MockApiController extends AbstractController
 {
 
-    public function __construct(private readonly MockApiService $mockApiService)
+    public function __construct(private readonly MockApiService $mockApiService, private readonly LoggerInterface $logger)
     {
     }
 
-    #[Route('/product-prices/raw', name: 'app_product_prices_raw', methods: ['GET'])]
+    #[Route('/raw', name: 'app_get_raw_product_price', methods: ['GET'])]
     public function getRawProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getRawProductPrices()
-        );
+        return $this->json($this->mockApiService->getRawProductPrices());
     }
 
-    #[Route('/product-prices/agg', name: 'app_product_prices_agg', methods: ['GET'])]
+    #[Route('/agg', name: 'app_get__agg_product_prices', methods: ['GET'])]
     public function getAggregatedProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getAggregatedProductPrices()
-        );
+        return $this->json($this->mockApiService->getAggregatedProductPrices());
     }
 
-    #[Route('/product-prices/cheapest', name: 'app_product_prices_cheapest', methods: ['GET'])]
+    #[Route('/cheapest', name: 'app_get_cheapest_product_prices', methods: ['GET'])]
     public function getCheapestProductPrices(): JsonResponse
     {
-        return new JsonResponse(
-            $this->mockApiService->getCheapestProductPrices()
-        );
+        return $this->json($this->mockApiService->getCheapestProductPrices());
     }
 
-    #[Route('/product-prices/save', name: 'save_product_prices', methods: ['GET'])]
-    public function saveProductPrices(): void
+    #[Route('/save', name: 'app_save_product_prices', methods: ['GET'])]
+    public function saveProductPrices(): JsonResponse
     {
-        $this->mockApiService->saveProductPrices();
+        try {
+            $this->mockApiService->saveProductPrices();
+
+            return $this->json([
+                'status' => 'success',
+                'message' => 'Products saved successfully.',
+            ], Response::HTTP_OK);
+
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+            return $this->json([
+                'status' => 'error',
+                'message' => 'An error occurred while saving products.',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }
