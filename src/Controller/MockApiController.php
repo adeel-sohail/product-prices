@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Service\MockApiService;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 
@@ -12,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class MockApiController extends AbstractController
 {
 
-    public function __construct(private readonly MockApiService $mockApiService)
+    public function __construct(private readonly MockApiService $mockApiService, private readonly LoggerInterface $logger)
     {
     }
 
@@ -35,8 +37,22 @@ class MockApiController extends AbstractController
     }
 
     #[Route('/save', name: 'app_save_product_prices', methods: ['GET'])]
-    public function saveProductPrices(): void
+    public function saveProductPrices(): JsonResponse
     {
-        $this->mockApiService->saveProductPrices();
+        try {
+            $this->mockApiService->saveProductPrices();
+
+            return $this->json([
+                'status' => 'success',
+                'message' => 'Products saved successfully.',
+            ], Response::HTTP_OK);
+
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+            return $this->json([
+                'status' => 'error',
+                'message' => 'An error occurred while saving products.',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }
