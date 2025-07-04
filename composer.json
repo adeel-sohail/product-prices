@@ -18,9 +18,9 @@
             "symfony/runtime": true
         }
     },
-    "autoload": {
+    "autoload-dev": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -30,6 +30,9 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.63"
+        "symfony/maker-bundle": "^1.63",
+        "phpunit/phpunit": "^12.2",
+        "symfony/browser-kit": "^7.3",
+        "symfony/css-selector": "^7.3"
     }
 }
