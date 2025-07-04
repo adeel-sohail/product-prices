@@ -1,8 +1,8 @@
-.PHONY: save-products run-tests
+.PHONY: save-products tests
 
 save-products:
 	php bin/console app:save-product-prices
 
-run-tests:
+tests:
 	php bin/phpunit
 
